@@ -1,6 +1,9 @@
 import os
+import logging
+import asyncio
+
 from dotenv import load_dotenv
-from realtime_pubsub_client import *
+from realtime_pubsub_client import RealtimeClient
 
 # Load variables from .env into os.environ
 load_dotenv()
@@ -26,15 +29,18 @@ async def main():
     }
     client = RealtimeClient(config)
 
-    # Connect to the WebSocket server
-    await client.connect()
-
     # Define a message handler
     async def handle_session_started(message):
         print('Session started:', message)
         await client.subscribe_remote_topic('chat')
 
     client.on('session.started', handle_session_started)
+
+    # Connect to the WebSocket server
+    await client.connect()
+
+    # Wait for the session.started event
+    await client.wait_for('session.started')
 
     # Send a message
     wait_for = await client.send('Hello, world!', {

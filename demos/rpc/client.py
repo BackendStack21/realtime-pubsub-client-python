@@ -33,7 +33,6 @@ async def main():
     # Connect to the WebSocket server
     await client.connect()
 
-
     # Define a message handler
     async def handle_session_started(message):
         client.logger.info('Requesting server time...')
@@ -50,6 +49,7 @@ async def main():
 
     while client.ws and not client.ws.closed:
         await asyncio.sleep(1)
+
 
 # Run the main coroutine
 asyncio.run(main())
