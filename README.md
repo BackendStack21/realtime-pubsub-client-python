@@ -42,8 +42,6 @@ import logging
 import os
 from realtime_pubsub_client import RealtimeClient
 
-APP_ID = 'your-app-id'
-
 
 async def main():
     async def get_url():
