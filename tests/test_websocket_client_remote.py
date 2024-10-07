@@ -28,7 +28,7 @@ class TestRealtimeClientRemote(unittest.IsolatedAsyncioTestCase):
         config = {
             'logger': logging.getLogger('RealtimeClient'),
             'websocket_options': {
-                'urlProvider': f"wss://genesis.r7.21no.de/apps/{app_id}?access_token={access_token}",
+                'url_provider': f"wss://genesis.r7.21no.de/apps/{app_id}?access_token={access_token}",
             }
         }
 

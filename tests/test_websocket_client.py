@@ -42,7 +42,7 @@ class TestRealtimeClient(unittest.IsolatedAsyncioTestCase):
         self.client = RealtimeClient({
             'logger': logging.getLogger('TestRealtimeClient'),
             'websocket_options': {
-                'urlProvider': url
+                'url_provider': url
             }
         })
 

@@ -1,13 +1,20 @@
 # Realtime Pub/Sub Client for Python
 
-The `realtime-pubsub-client-python` is a Python client library for interacting with [Realtime Pub/Sub](https://realtime.21no.de) applications. It enables developers to manage real-time WebSocket connections, handle subscriptions, and process messages efficiently. The library provides a simple and flexible API to interact with realtime applications, supporting features like publishing/sending messages, subscribing to topics, handling acknowledgements, and waiting for replies with timeout support.
+The `realtime-pubsub-client-python` is a Python client library for interacting
+with [Realtime Pub/Sub](https://realtime.21no.de) applications. It enables developers to manage real-time WebSocket
+connections, handle subscriptions, and process messages efficiently. The library provides a simple and flexible API to
+interact with realtime applications, supporting features like publishing/sending messages, subscribing to topics,
+handling acknowledgements, and waiting for replies with timeout support.
 
 ## Features
 
-- **WebSocket Connection Management**: Seamlessly connect and disconnect from the Realtime Pub/Sub service with automatic reconnection support.
+- **WebSocket Connection Management**: Seamlessly connect and disconnect from the Realtime Pub/Sub service with
+  automatic reconnection support.
 - **Topic Subscription**: Subscribe and unsubscribe to topics for receiving messages.
-- **Topic Publishing**: [Publish](https://realtime.21no.de/documentation/#publishers) messages to specific topics with optional message types and compression.
-- **Message Sending**: [Send](https://realtime.21no.de/documentation/#websocket-inbound-messaging) messages to backend applications with optional message types and compression.
+- **Topic Publishing**: [Publish](https://realtime.21no.de/documentation/#publishers) messages to specific topics with
+  optional message types and compression.
+- **Message Sending**: [Send](https://realtime.21no.de/documentation/#websocket-inbound-messaging) messages to backend
+  applications with optional message types and compression.
 - **Event Handling**: Handle incoming messages with custom event listeners.
 - **Acknowledgements and Replies**: Wait for gateway acknowledgements or replies to messages with timeout support.
 - **Error Handling**: Robust error handling and logging capabilities.
@@ -37,6 +44,7 @@ from realtime_pubsub_client import RealtimeClient
 
 APP_ID = 'your-app-id'
 
+
 async def main():
     async def get_url():
         # replace with your access token retrieval strategy
@@ -49,7 +57,7 @@ async def main():
     client_options = {
         'logger': logging.getLogger('RealtimeClient'),
         'websocket_options': {
-            'urlProvider': get_url,
+            'url_provider': get_url,
         },
     }
     client = RealtimeClient(client_options)
@@ -65,6 +73,7 @@ async def main():
     await client.connect()
     await client.wait_for('session.started')
 
+
 asyncio.run(main())
 ```
 
@@ -78,6 +87,7 @@ You can handle messages for specific topics and message types:
 def handle_message(message, reply_fn):
     # Message handling logic here
     print('Received message:', message['data']['payload'])
+
 
 client.on('topic1.action1', handle_message)
 ```
@@ -109,6 +119,7 @@ async def handle_message(message, reply_fn):
 
     # Sending a reply
     await reply_fn('Message received!', 'ok')
+
 
 client.on('topic1.text-message', handle_message)
 ```
@@ -157,8 +168,10 @@ Handle errors and disconnections:
 def on_error(error):
     print('WebSocket error:', error)
 
+
 def on_close(event):
     print('WebSocket closed:', event)
+
 
 client.on('error', on_error)
 client.on('close', on_close)
@@ -192,13 +205,15 @@ Creates a new `RealtimeClient` instance.
   await client.disconnect()
   ```
 
-- **`subscribe_remote_topic(topic)`**: [Subscribes](https://realtime.21no.de/documentation/#subscribers) the connection to a remote topic.
+- **`subscribe_remote_topic(topic)`**: [Subscribes](https://realtime.21no.de/documentation/#subscribers) the connection
+  to a remote topic.
 
   ```python
   await client.subscribe_remote_topic(topic)
   ```
 
-- **`unsubscribe_remote_topic(topic)`**: [Unsubscribes](https://realtime.21no.de/documentation/#subscribers) the connection from a remote topic.
+- **`unsubscribe_remote_topic(topic)`**: [Unsubscribes](https://realtime.21no.de/documentation/#subscribers) the
+  connection from a remote topic.
 
   ```python
   await client.unsubscribe_remote_topic(topic)
@@ -260,12 +275,13 @@ This library is licensed under the MIT License.
 
 ---
 
-For more detailed examples and advanced configurations, please refer to the [documentation](https://realtime.21no.de/docs).
+For more detailed examples and advanced configurations, please refer to
+the [documentation](https://realtime.21no.de/docs).
 
 ## Notes
 
 - Ensure that you have an account and an app set up with [Realtime Pub/Sub](https://realtime.21no.de).
-- Customize the `urlProvider` or URL to retrieve the access token for connecting to your realtime application.
+- Customize the `url_provider` or URL to retrieve the access token for connecting to your realtime application.
 - Implement the `get_auth_token` function according to your authentication mechanism.
 - Optionally use the `logger` option to integrate with your application's logging system.
 - Handle errors and disconnections gracefully to improve the robustness of your application.
@@ -273,4 +289,5 @@ For more detailed examples and advanced configurations, please refer to the [doc
 
 ---
 
-Feel free to contribute to this project by submitting issues or pull requests on [GitHub](https://github.com/BackendStack21/realtime-pubsub-client-python).
+Feel free to contribute to this project by submitting issues or pull requests
+on [GitHub](https://github.com/BackendStack21/realtime-pubsub-client-python).

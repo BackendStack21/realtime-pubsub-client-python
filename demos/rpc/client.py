@@ -23,7 +23,7 @@ async def main():
     config = {
         'logger': logging.getLogger('RealtimeClient'),
         'websocket_options': {
-            'urlProvider': get_url,
+            'url_provider': get_url,
         }
     }
     client = RealtimeClient(config)

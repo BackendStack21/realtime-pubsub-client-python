@@ -340,7 +340,7 @@ class RealtimeClient(EventEmitter):
         """
         Establish a connection to the WebSocket server.
 
-        Initiates the WebSocket connection using the provided URL from the `urlProvider` function.
+        Initiates the WebSocket connection using the provided URL from the `url_provider` function.
         Sets up event handlers for incoming messages, errors, and closure events.
 
         Raises:
@@ -354,7 +354,7 @@ class RealtimeClient(EventEmitter):
         max_backoff = 60
 
         while True:
-            url_provider = self.websocket_options.get('urlProvider')
+            url_provider = self.websocket_options.get('url_provider')
             if callable(url_provider):
                 if asyncio.iscoroutinefunction(url_provider):
                     ws_url = await url_provider()
@@ -368,7 +368,7 @@ class RealtimeClient(EventEmitter):
 
             try:
                 max_float = float('inf')
-                self.ws = await connect(ws_url, max_size=2 ** 20, ping_interval=None,  ping_timeout=None)
+                self.ws = await connect(ws_url, max_size=None, ping_interval=None,  ping_timeout=None)
                 self.logger.info(f'Connected to WebSocket URL: {ws_url[:80]}...')  # Masking the URL for security
                 asyncio.ensure_future(self._receive_messages())
 
