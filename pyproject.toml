@@ -1,0 +1,36 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "realtime-pubsub-client"
+version = "0.1.0"
+description = "The official Realtime Pub/Sub client for Python"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Rolando Santamaria Maso", email = "kyberneees@gmail.com" }]
+keywords = ["realtime", "pubsub", "messaging", "websocket", "client", "python"]
+requires-python = ">=3.6"
+dependencies = [
+    "websockets>=13.1",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Communications",
+    "Topic :: Internet",
+    "Topic :: System :: Networking"
+]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/**/*.py",
+    "pyproject.toml",
+    "README.md",
+    "LICENSE",
+]
+
