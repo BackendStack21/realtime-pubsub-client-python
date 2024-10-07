@@ -19,7 +19,7 @@ class TestRealtimeClient(unittest.IsolatedAsyncioTestCase):
         Set up the test environment by patching the WebSocket connection and creating a mock WebSocket object.
         """
         # Patch 'connect' in 'src.client' where it is used, preventing actual WebSocket connections
-        self.patcher = patch('src.client.connect', new_callable=AsyncMock)
+        self.patcher = patch('realtime_pubsub_client.client.connect', new_callable=AsyncMock)
         self.mock_connect = self.patcher.start()  # Start the patcher
         self.addCleanup(self.patcher.stop)  # Stop patcher when test ends
 
