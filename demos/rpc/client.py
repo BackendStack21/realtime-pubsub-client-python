@@ -2,7 +2,7 @@ import os
 import time
 
 from dotenv import load_dotenv
-from src.client import *
+from realtime_pubsub_client.client import *
 
 # Load variables from .env into os.environ
 load_dotenv()

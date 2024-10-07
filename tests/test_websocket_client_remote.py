@@ -2,7 +2,7 @@ import unittest
 import logging
 import os
 from dotenv import load_dotenv
-from src.client import RealtimeClient, wait
+from realtime_pubsub_client.client import RealtimeClient, wait
 
 
 class TestRealtimeClientRemote(unittest.IsolatedAsyncioTestCase):

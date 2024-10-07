@@ -5,7 +5,7 @@ from unittest.mock import AsyncMock, patch
 import json
 
 # Import your RealtimeClient module
-from src.client import RealtimeClient, WaitFor
+from realtime_pubsub_client.client import RealtimeClient, WaitFor
 
 
 class TestRealtimeClient(unittest.IsolatedAsyncioTestCase):

@@ -28,7 +28,7 @@ classifiers = [
 
 [tool.hatch.build.targets.sdist]
 include = [
-    "src/**/*.py",
+    "realtime_pubsub_client/**/*.py",
     "pyproject.toml",
     "README.md",
     "LICENSE",

@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import AsyncMock, MagicMock
 
-from src.client import WaitFor
+from realtime_pubsub_client.client import WaitFor
 
 
 class TestWaitFor(unittest.IsolatedAsyncioTestCase):

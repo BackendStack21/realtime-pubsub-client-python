@@ -1,5 +1,5 @@
 import unittest
-from src.client import EventEmitter
+from realtime_pubsub_client.client import EventEmitter
 
 
 class TestEventEmitter(unittest.TestCase):
