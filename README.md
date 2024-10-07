@@ -1,6 +1,6 @@
 # Realtime Pub/Sub Client for Python
 
-The `realtime-pubsub-client-python` is a Python client library for interacting
+The `realtime-pubsub-client` is a Python client library for interacting
 with [Realtime Pub/Sub](https://realtime.21no.de) applications. It enables developers to manage real-time WebSocket
 connections, handle subscriptions, and process messages efficiently. The library provides a simple and flexible API to
 interact with realtime applications, supporting features like publishing/sending messages, subscribing to topics,
@@ -22,15 +22,15 @@ handling acknowledgements, and waiting for replies with timeout support.
 
 ## Installation
 
-Install the `realtime-pubsub-client-python` library via pip:
+Install the `realtime-pubsub-client` library via pip:
 
 ```bash
-pip install realtime-pubsub-client-python
+pip install realtime-pubsub-client
 ```
 
 ## Getting Started
 
-This guide will help you set up and use the `realtime-pubsub-client-python` library in your Python project.
+This guide will help you set up and use the `realtime-pubsub-client` library in your Python project.
 
 ### Connecting to the Server
 
