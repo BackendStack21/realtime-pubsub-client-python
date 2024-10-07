@@ -1,8 +1,10 @@
 import os
 import time
+import logging
+import asyncio
 
 from dotenv import load_dotenv
-from realtime_pubsub_client.client import *
+from realtime_pubsub_client import RealtimeClient
 
 # Load variables from .env into os.environ
 load_dotenv()

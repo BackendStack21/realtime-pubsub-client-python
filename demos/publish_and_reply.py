@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from realtime_pubsub_client.client import *
+from realtime_pubsub_client import *
 
 # Load variables from .env into os.environ
 load_dotenv()
