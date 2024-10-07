@@ -43,7 +43,7 @@ async def main():
     async def handle_get_time(message, reply_fn):
         client.logger.info('Responding to gettime request...')
         await reply_fn({
-            'time': time.time()
+            'time': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime())
         }, status='ok')
 
     client.on('secure/inbound.gettime', handle_get_time)

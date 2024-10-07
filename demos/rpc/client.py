@@ -41,7 +41,7 @@ async def main():
         })
 
         response, = await waiter.wait_for_reply(timeout=5)
-        client.logger.info(f"Server time: {time.ctime(response['data']['time'])}")
+        client.logger.info(f"Server time: {response['data']['time']}")
 
         await client.disconnect()
 
