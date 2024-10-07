@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "realtime-pubsub-client"
-version = "0.1.0"
+version = "0.1.1"
 description = "The official Realtime Pub/Sub client for Python"
 readme = "README.md"
 license = { text = "MIT" }
