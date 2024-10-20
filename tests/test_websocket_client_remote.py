@@ -77,9 +77,7 @@ class TestRealtimeClientRemote(unittest.IsolatedAsyncioTestCase):
         self.client.on('chat.text-message', handle_message)
 
         # Publish a message and wait for a reply
-        wait_for = await self.client.publish('chat', 'Hello out there!', {
-            'messageType': 'text-message'
-        })
+        wait_for = await self.client.publish('chat', 'Hello out there!', message_type='text-message')
         response, = await wait_for.wait_for_reply()  # Unpack the single-element response tuple
 
         # Verify the reply data
@@ -107,10 +105,7 @@ class TestRealtimeClientRemote(unittest.IsolatedAsyncioTestCase):
         await self.client.wait_for('session.started')
 
         # Send a message and wait for acknowledgment
-        wait_for = await self.client.send('Hello, world!', {
-            'messageType': 'text-message',
-            'compress': True
-        })
+        wait_for = await self.client.send('Hello, world!', message_type='text-message', compress=True)
         await wait_for.wait_for_ack()  # Wait for the acknowledgment
 
         # Disconnect after the test

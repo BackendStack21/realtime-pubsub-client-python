@@ -35,9 +35,7 @@ async def main():
     # Define a message handler
     async def handle_session_started(message):
         client.logger.info('Requesting server time...')
-        waiter = await client.send('', {
-            'messageType': 'gettime'
-        })
+        waiter = await client.send('', message_type='gettime')
 
         response, = await waiter.wait_for_reply(timeout=5)
         client.logger.info(f"Server time: {response['data']['time']}")

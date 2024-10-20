@@ -72,7 +72,7 @@ class TestRealtimeClient(unittest.IsolatedAsyncioTestCase):
         Ensures that the message is sent over the WebSocket and the WaitFor object is returned.
         """
         await self.client.connect()
-        waiter = await self.client.publish('test.topic', {'key': 'value'}, {'messageType': 'test-message'})
+        waiter = await self.client.publish('test.topic', {'key': 'value'}, message_type='text-message')
         self.assertIsInstance(waiter, WaitFor)  # Ensure a WaitFor instance is returned
         self.client.ws.send.assert_awaited_once()  # Ensure the message was sent
 
@@ -82,7 +82,7 @@ class TestRealtimeClient(unittest.IsolatedAsyncioTestCase):
         Ensures that the message is sent, and a WaitFor object is returned for acknowledgment.
         """
         await self.client.connect()
-        waiter = await self.client.send({'key': 'value'}, {'messageType': 'test-message'})
+        waiter = await self.client.send({'key': 'value'}, message_type='text-message')
         self.assertIsInstance(waiter, WaitFor)  # Ensure a WaitFor instance is returned
         self.client.ws.send.assert_awaited_once()  # Ensure the message was sent
 
@@ -118,7 +118,7 @@ class TestRealtimeClient(unittest.IsolatedAsyncioTestCase):
         # Mock the incoming messages
         self.mock_ws.__aiter__.return_value = [json.dumps({
             'topic': 'test.topic',
-            'messageType': 'test-message',
+            'messageType': 'text-message',
             'data': {'key': 'value'}
         })]
 
@@ -128,8 +128,8 @@ class TestRealtimeClient(unittest.IsolatedAsyncioTestCase):
         def listener(message, reply_fn):
             called.append(message)
 
-        # Subscribe to test.topic.test-message events
-        self.client.on('test.topic.test-message', listener)
+        # Subscribe to test.topic.text-message events
+        self.client.on('test.topic.text-message', listener)
 
         # Allow time for the message to be processed
         await asyncio.sleep(0.1)
