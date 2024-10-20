@@ -43,9 +43,7 @@ async def main():
     await client.wait_for('session.started')
 
     # Send a message
-    wait_for = await client.send('Hello, world!', {
-        'messageType': 'text-message'
-    })
+    wait_for = await client.send('Hello, world!', message_type='text-message')
     await wait_for.wait_for_ack()
 
     # Define a message handler
@@ -59,9 +57,7 @@ async def main():
     # Subscribe to chat.text-message events
     client.on('chat.text-message', handle_message)
 
-    wait_for = await client.publish('chat', 'Hello out there!', {
-        'messageType': 'text-message'
-    })
+    wait_for = await client.publish('chat', 'Hello out there!', message_type='text-message')
     response = await wait_for.wait_for_reply()
     print('Reply:', response)
 

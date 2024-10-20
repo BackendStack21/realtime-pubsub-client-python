@@ -101,9 +101,7 @@ client.on('topic1.*', handle_message)
 Publish messages to a topic:
 
 ```python
-await client.publish('topic1', 'Hello, world!', {
-    'messageType': 'text-message',
-})
+await client.publish('topic1', 'Hello, world!', message_type='text-message')
 ```
 
 ### Responding to Incoming Messages
@@ -130,9 +128,7 @@ client.on('topic1.text-message', handle_message)
 Wait for the Realtime Gateway acknowledgement after publishing a message:
 
 ```python
-waiter = await client.publish('secure/peer-to-peer1', 'Hi', {
-    'messageType': 'greeting',
-})
+waiter = await client.publish('secure/peer-to-peer1', 'Hi', message_type='text-message')
 await waiter.wait_for_ack()
 ```
 
@@ -141,9 +137,7 @@ Wait for the Realtime Gateway acknowledgement after sending a message:
 ```python
 waiter = await client.send({
     # Message payload
-}, {
-    'messageType': 'create',
-})
+}, message_type='create')
 await waiter.wait_for_ack()
 ```
 
@@ -152,9 +146,7 @@ Wait for a reply with a timeout:
 ```python
 waiter = await client.send({
     # Message payload
-}, {
-    'messageType': 'create',
-})
+}, message_type='create')
 await waiter.wait_for_reply(timeout=5)  # Wait for up to 5 seconds
 ```
 
@@ -217,15 +209,15 @@ Creates a new `RealtimeClient` instance.
   await client.unsubscribe_remote_topic(topic)
   ```
 
-- **`publish(topic, payload, options=None)`**: Publishes a message to a topic.
+- **`publish(topic, payload, message_type="broadcast", compress=False, message_id=None)`**: Publishes a message to a topic.
 
   ```python
-  waiter = await client.publish(topic, payload, options)
+  waiter = await client.publish(topic, payload)
   ```
 
   Returns a `WaitFor` instance to wait for acknowledgements or replies.
 
-- **`send(payload, options=None)`**: Sends a message to the server.
+- **`send(payload, compress=False, message_id=None)`**: Sends a message to the server.
 
   ```python
   waiter = await client.send(payload, options)
