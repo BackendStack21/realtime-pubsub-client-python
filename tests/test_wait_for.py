@@ -22,7 +22,7 @@ class TestWaitFor(unittest.IsolatedAsyncioTestCase):
         client.wait_for = AsyncMock(return_value='acknowledged')
 
         # Define options with a specific message ID
-        options = {'id': '1234'}
+        options = '1234'
 
         # Create an instance of WaitFor with the mock client and options
         waiter = WaitFor(client, options)
@@ -48,7 +48,7 @@ class TestWaitFor(unittest.IsolatedAsyncioTestCase):
         client.wait_for = AsyncMock(return_value='response')
 
         # Define options with a specific message ID
-        options = {'id': '5678'}
+        options = '5678'
 
         # Create an instance of WaitFor with the mock client and options
         waiter = WaitFor(client, options)
